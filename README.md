@@ -29,11 +29,13 @@ The objective of this project is to design, implement, and analyze a comprehensi
 <details>
   <sumary><b>FIREWALL</b></sumary>
 
-   Analyzing these firewall logs, we can see the action taken was denied. At 07:30:52, the firewall named LETSDEFEND blocked an IMAP traffic attempt from 192.168.68.12 (WAN interface) to 192.168.68.34 (Port 143). The traffic was denied due to the absence of a matching policy (policyid=0) and was classified as low risk with no data packets or bytes transmitted. The source and destination were both located within the United States, and the application traffic was categorized as unscanned.
+   Analyzing these firewall logs (Fortinet Firewall), we can see the action taken was denied. At 07:30:52, the firewall named LETSDEFEND blocked an IMAP traffic attempt from 192.168.68.12 (WAN interface) to 192.168.68.34 (Port 143). The traffic was denied due to the absence of a matching policy (policyid=0) and was classified as low risk with no data packets or bytes transmitted. The source and destination were both located within the United States, and the application traffic was categorized as unscanned.
 
  ![image](https://github.com/user-attachments/assets/1b94e538-0510-440e-8a2d-ce025d0977c5)
 
+ <b>ENDPOINT DETECTION RESPONSE</b>
+ 
  </details> 
 
-</details>
+
 
