@@ -34,7 +34,27 @@ The objective of this project is to design, implement, and analyze a comprehensi
  ![image](https://github.com/user-attachments/assets/1b94e538-0510-440e-8a2d-ce025d0977c5)
 
  <b>ENDPOINT DETECTION RESPONSE</b>
- 
+
+<b>WEB APPLICATION FIREWALL</b>
+
+ ![image](https://github.com/user-attachments/assets/e6c9562d-517d-46d6-ae62-ccd879adffaa)
+
+ The AWS WAF log shows a blocked SQL Injection (SQLi) attack originating from the IP 185.220.101.35 (Germany). The attacker injected the payload "10 AND 1=1" into the custom HTTP header x-spl-test, likely using the curl tool. The attack targeted the URI /myUri via a GET request.
+
+The LetsDefend_SQLi rule identified the SQLi attempt with high sensitivity and successfully blocked it, ensuring no further impact on the application. This indicates effective protection against SQLi attacks.
+
+### Steps To Take;
+- Monitor and block the IP for future activities.
+- Review and secure application inputs to prevent SQLi.
+- Keep WAF rules updated for ongoing protection.
+
+ <b>CLOUDFLARE</b>
+
+The firewall log indicates a blocked HTTP GET request targeting letsdefend.io from the IP 185.220.102.244, originating from ASN 60533. The request used HTTP/1.0 and a common browser user-agent but lacked a query string, suggesting a generic probe or scan. It was blocked by a custom firewall rule (Rule ID: 8b16d6292f3f4e0096fc85c1ad199sa2).
+
+
+ ![image](https://github.com/user-attachments/assets/e87a4b42-2e0a-4eeb-972b-1f4cf223cc16)
+
  </details> 
 
 
