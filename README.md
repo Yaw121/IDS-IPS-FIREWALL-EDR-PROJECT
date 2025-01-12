@@ -18,15 +18,17 @@ The objective of this project is to design, implement, and analyze a comprehensi
 
 
 2. Analyzing the Suricata IPS log file on letsdefend, we can see the command was run successfully based on this screenshot;
+   The alert log indicates a high-severity security event involving a successful user privilege gain. The IDS/IPS detected a Net User command response from source IP 192.168.59.71 (port 80) to destination IP 192.168.59.81 (port 56040) over TCP. This suggests potential privilege escalation activity, commonly associated with user account enumeration or manipulation. The traffic was allowed, indicating no immediate blocking action was taken. The flow involved 12 packets to the server (4776 bytes) and 7 packets to the client (4428 bytes), starting at 2017-03-24T18:05:53.575551. This event warrants immediate investigation to confirm the intent of the activity, verify user account integrity, and implement appropriate security controls to prevent further exploitation.
 
    ![image](https://github.com/user-attachments/assets/881ecbbc-ca35-44ee-9c20-86d22db5350f)
 
-   From analyzing these Suricata IPS logs, we can see that the adversary attempted to exploit an SSL vulnerability in the system which is called Poodle
+   From analyzing these Suricata IPS logs, we can see that the adversary attempted to exploit an SSL vulnerability in the system which is called Poodle.
+   The log indicates a high-severity alert for an inbound SSLv3 connection flagged as vulnerable to the POODLE attack, which exploits a weakness in the SSLv3 protocol. The connection originated from source IP 10.60.11.10 (port 443) to destination IP 10.60.11.20 (port 40170) over TCP and was allowed, meaning the traffic was not blocked. The ET POLICY SSLv3 inbound connection to server signature (ID 2019415) identified the risk as a Potential Corporate Privacy Violation, with 10 packets (1650 bytes) sent to the server and 5 packets (866 bytes) received from the server. Immediate remediation is recommended, including disabling SSLv3 and enforcing stronger encryption protocols (e.g., TLS 1.2/1.3) to mitigate this vulnerability.
 
 ![image](https://github.com/user-attachments/assets/8626fe6a-ec4c-42c6-bebd-150a9b7f0b6d)
 
 
-<details>
+
   <sumary><b>FIREWALL</b></sumary>
 
    Analyzing these firewall logs (Fortinet Firewall), we can see the action taken was denied. At 07:30:52, the firewall named LETSDEFEND blocked an IMAP traffic attempt from 192.168.68.12 (WAN interface) to 192.168.68.34 (Port 143). The traffic was denied due to the absence of a matching policy (policyid=0) and was classified as low risk with no data packets or bytes transmitted. The source and destination were both located within the United States, and the application traffic was categorized as unscanned.
@@ -35,9 +37,11 @@ The objective of this project is to design, implement, and analyze a comprehensi
 
  <b>ENDPOINT DETECTION RESPONSE</b>
 
-<b>WEB APPLICATION FIREWALL</b>
+The log reveals a high-severity OS Credential Dumping attempt involving PowerShell executing the Mimikatz utility to steal credentials. The malicious command tried to download a script from http://is.gd/oeoFuI and execute Invoke-Mimikatz -DumpCreds. The attack was identified and successfully blocked by the security system, preventing execution. The process originated from powershell.exe located at \Device\HarddiskVolume2\Windows\System32\WindowsPowerShell\v1.0, with the SHA256 hash 9f914d42706fe215501044acd85a32d58aaef1419d404fddfa5d3b48f66ccd9f. This incident demonstrates an attempted credential theft that was effectively mitigated by proactive security measures.
 
- ![image](https://github.com/user-attachments/assets/e6c9562d-517d-46d6-ae62-ccd879adffaa)
+![image](https://github.com/user-attachments/assets/657b5770-b6a0-4885-87bf-e71615bf95db)
+
+<b>WEB APPLICATION FIREWALL</b>
 
  The AWS WAF log shows a blocked SQL Injection (SQLi) attack originating from the IP 185.220.101.35 (Germany). The attacker injected the payload "10 AND 1=1" into the custom HTTP header x-spl-test, likely using the curl tool. The attack targeted the URI /myUri via a GET request.
 
@@ -47,6 +51,10 @@ The LetsDefend_SQLi rule identified the SQLi attempt with high sensitivity and s
 - Monitor and block the IP for future activities.
 - Review and secure application inputs to prevent SQLi.
 - Keep WAF rules updated for ongoing protection.
+  
+ ![image](https://github.com/user-attachments/assets/e6c9562d-517d-46d6-ae62-ccd879adffaa)
+
+
 
  <b>CLOUDFLARE</b>
 
